@@ -9,15 +9,11 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
-import org.jetbrains.exposed.sql.*
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
 class DashboardFragment : Fragment() {
-
-    val db = Database.connect("jdbc:h2:mem:test", driver = "org.h2.Driver")
-
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
