@@ -9,18 +9,21 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
+import org.jetbrains.exposed.sql.*
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
-class FirstFragment : Fragment() {
+class DashboardFragment : Fragment() {
+
+    val db = Database.connect("jdbc:h2:mem:test", driver = "org.h2.Driver")
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_first, container, false)
+        return inflater.inflate(R.layout.fragment_dashboard, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -29,7 +32,7 @@ class FirstFragment : Fragment() {
         view.findViewById<Button>(R.id.random_button).setOnClickListener {
             val showCountTextView = view.findViewById<TextView>(R.id.textview_first)
             val currentCount = showCountTextView.text.toString().toInt()
-            val action = FirstFragmentDirections.actionFirstFragmentToSecondFragment(currentCount)
+            val action = DashboardFragmentDirections.actionDashboardFragmentToSecondFragment(currentCount)
             findNavController().navigate(action)
         }
 
